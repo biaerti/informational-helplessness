@@ -27,3 +27,42 @@ document.addEventListener("DOMContentLoaded", function() {
     // Możesz również zapisać wybrane URL-e do localStorage, jeśli potrzebujesz przekazać te informacje między stronami
     localStorage.setItem('remainingUrls', JSON.stringify(selectedUrls.slice(1)));
 });
+
+
+
+
+// Zakładając, że wylosowane linki są już w zmiennej selectedUrls
+
+// Przekierowanie do pierwszego wylosowanego scenariusza
+window.location.href = selectedUrls[0];
+
+// Zapisz pozostałe linki do localStorage
+localStorage.setItem('remainingUrls', JSON.stringify(selectedUrls.slice(1)));
+
+if (!localStorage.getItem('completedForms')) {
+    localStorage.setItem('completedForms', '0');
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const remainingUrls = JSON.parse(localStorage.getItem('remainingUrls'));
+    let completedForms = parseInt(localStorage.getItem('completedForms'));
+
+    if (completedForms >= 3) {
+        // Jeśli ukończono już 3 formularze, przekieruj na stronę podziękowania
+        localStorage.clear();  // Wyczyść localStorage po zakończeniu
+        window.location.href = 'https://twoj.link.do.strony.podziękowania';
+        return;
+    }
+
+    if (remainingUrls && remainingUrls.length > 0) {
+        // Przekieruj do następnego formularza w kolejce
+        window.location.href = remainingUrls[0];
+
+        // Aktualizacja localStorage z pozostałymi linkami i zwiększenie liczby ukończonych formularzy
+        localStorage.setItem('remainingUrls', JSON.stringify(remainingUrls.slice(1)));
+        localStorage.setItem('completedForms', (completedForms + 1).toString());
+    } else {
+        // Jeśli nie ma więcej linków, przekieruj na stronę podsumowania lub zakończenia
+        window.location.href = 'https://twoj.link.do.strony.podziękowania';
+    }
+});
