@@ -1,13 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const urls = [
-        "https://tally.so/r/3jBazR", // Link do scenariusza 1
-        "https://tally.so/r/wvNGb8", // Link do scenariusza 2
-        "https://tally.so/r/wLdZy2", // Link do scenariusza 3
-        "https://tally.so/r/mKMYyK", // Link do scenariusza 4
-        "https://tally.so/r/npLb9E", // Link do scenariusza 5
-        "https://tally.so/r/31rA5L"  // Link do scenariusza 6
-    ];
 
+
+document.addEventListener("DOMContentLoaded", function() {
     // Funkcja losująca unikalne indeksy scenariuszy
     function getRandomScenarios(count, total) {
         let indices = new Set();
@@ -18,51 +11,33 @@ document.addEventListener("DOMContentLoaded", function() {
         return Array.from(indices);
     }
 
-    const selectedIndices = getRandomScenarios(3, urls.length);
-    const selectedUrls = selectedIndices.map(index => urls[index]);
+    const urls = [
+        "https://tally.so/r/3jBazR", // Link do scenariusza 1
+        "https://tally.so/r/wvNGb8", // Link do scenariusza 2
+        "https://tally.so/r/wLdZy2", // Link do scenariusza 3
+        "https://tally.so/r/mKMYyK", // Link do scenariusza 4
+        "https://tally.so/r/npLb9E", // Link do scenariusza 5
+        "https://tally.so/r/31rA5L"  // Link do scenariusza 6
+    ];
 
-    // Przekierowanie do pierwszego wylosowanego scenariusza
-    window.location.href = selectedUrls[0];
+    // Sprawdź, czy mamy już wybrane scenariusze w localStorage
+    let remainingUrls = localStorage.getItem('remainingUrls') ? JSON.parse(localStorage.getItem('remainingUrls')) : null;
 
-    // Możesz również zapisać wybrane URL-e do localStorage, jeśli potrzebujesz przekazać te informacje między stronami
-    localStorage.setItem('remainingUrls', JSON.stringify(selectedUrls.slice(1)));
-});
-
-
-
-
-// Zakładając, że wylosowane linki są już w zmiennej selectedUrls
-
-// Przekierowanie do pierwszego wylosowanego scenariusza
-window.location.href = selectedUrls[0];
-
-// Zapisz pozostałe linki do localStorage
-localStorage.setItem('remainingUrls', JSON.stringify(selectedUrls.slice(1)));
-
-if (!localStorage.getItem('completedForms')) {
-    localStorage.setItem('completedForms', '0');
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    const remainingUrls = JSON.parse(localStorage.getItem('remainingUrls'));
-    let completedForms = parseInt(localStorage.getItem('completedForms'));
-
-    if (completedForms >= 3) {
-        // Jeśli ukończono już 3 formularze, przekieruj na stronę podziękowania
-        localStorage.clear();  // Wyczyść localStorage po zakończeniu
-        window.location.href = 'https://twoj.link.do.strony.podziękowania';
-        return;
-    }
-
-    if (remainingUrls && remainingUrls.length > 0) {
-        // Przekieruj do następnego formularza w kolejce
-        window.location.href = remainingUrls[0];
-
-        // Aktualizacja localStorage z pozostałymi linkami i zwiększenie liczby ukończonych formularzy
-        localStorage.setItem('remainingUrls', JSON.stringify(remainingUrls.slice(1)));
-        localStorage.setItem('completedForms', (completedForms + 1).toString());
+    if (!remainingUrls || remainingUrls.length === 0) {
+        // Jeśli to pierwsze uruchomienie, wylosuj trzy scenariusze
+        const selectedIndices = getRandomScenarios(3, urls.length);
+        remainingUrls = selectedIndices.map(index => urls[index]);
+        localStorage.setItem('remainingUrls', JSON.stringify(remainingUrls));
+        window.location.href = remainingUrls.shift(); // Przekieruj do pierwszego wybranego scenariusza
     } else {
-        // Jeśli nie ma więcej linków, przekieruj na stronę podsumowania lub zakończenia
-        window.location.href = 'https://twoj.link.do.strony.podziękowania';
+        // Przekieruj do następnego wybranego scenariusza lub strony z podziękowaniami
+        const nextUrl = remainingUrls.shift();
+        if (remainingUrls.length > 0) {
+            localStorage.setItem('remainingUrls', JSON.stringify(remainingUrls));
+            window.location.href = nextUrl;
+        } else {
+            localStorage.removeItem('remainingUrls'); // Usuń dane z localStorage
+            window.location.href = 'https://biaerti.github.io/informational-helplessness/podziekowanie'; // Przekieruj na stronę z podziękowaniami
+        }
     }
 });
