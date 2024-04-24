@@ -26,3 +26,11 @@ body {
     border: none;
     border-radius: 5px;
 }
+
+#task-message {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f4f4f4; /* jasnoszary tło dla lepszej widoczności */
+    border: 1px solid #ccc; /* subtelna obramówka */
+    text-align: center;
+}
