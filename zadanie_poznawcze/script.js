@@ -17,7 +17,7 @@ window.onload = function() {
         startButton.addEventListener('click', function() {
             instructionContainer.style.display = 'none';
             videoContainer.style.display = 'block';
-            showTaskLabel('Zadanie próbne', 5000);
+            showTaskLabel('Zadanie 1', 5000); // Zmiana numeracji na "Zadanie 1" dla pierwszego zadania
         });
     } else {
         console.error('Some elements do not exist in the DOM');
@@ -86,7 +86,7 @@ window.onload = function() {
 
             if (currentVideoIndex < videos.length - 1) {
                 currentVideoIndex++;
-                showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000);
+                showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000); // Zmiana numeracji dla kolejnych zadań
             } else {
                 window.location.href = 'https://tally.so/r/3jBazR';
             }
