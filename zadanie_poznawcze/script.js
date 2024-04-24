@@ -2,10 +2,9 @@ window.onload = function() {
     const videos = [
         'https://www.industryplant.xyz/videos/Zadanie_Probne.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_1_Eksperymentalne.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_2_Eksperymentalnee.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_3_Eskperymentalnee.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_2_Eksperymentalne.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_3_Eksperymentalne.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_4_Eksperymentalne.mp4'
-        // Dodaj resztę filmów zależnie od grupy (kontrolnej/eksperymentalnej)
     ];
 
     let currentVideoIndex = 0;
@@ -60,8 +59,13 @@ window.onload = function() {
 
     function submitResponse() {
         const responseForm = document.getElementById('response-form');
+        const selectedOption = document.getElementById('response-select').value;
         responseForm.style.display = 'none';  // Ukryj formularz po zatwierdzeniu odpowiedzi
-    
+
+        if (currentVideoIndex === 0) {  // Po zadaniu próbnym
+            alert("Poprawną odpowiedzią było 'Figura jest trójkątem'. Teraz już nie będzie podawana prawidłowa odpowiedź i będziesz musiał klikać samodzielnie.");
+        }
+
         if (currentVideoIndex < videos.length - 1) {
             currentVideoIndex++;
             showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000); // poprawa wyświetlanego indeksu zadania
