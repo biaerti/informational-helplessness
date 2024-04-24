@@ -3,7 +3,7 @@ window.onload = function() {
         'https://www.industryplant.xyz/videos/Zadanie_próbne.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_1_Eksperymentalne.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_2_Eksperymentalnee.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_3_Eksperymentalnee.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_3_Eskperymentalnee.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_4_Eksperymentalne.mp4'
         // Dodaj resztę filmów zależnie od grupy (kontrolnej/eksperymentalnej)
     ];
