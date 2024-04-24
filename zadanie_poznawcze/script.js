@@ -2,10 +2,9 @@ window.onload = function() {
     const videos = [
         'https://www.industryplant.xyz/videos/Zadanie_Probne.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_1_Eksperymentalne.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_2_Eksperymentalnee.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_3_Eksperymentalnee.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_2_Eksperymentalne.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_3_Eksperymentalne.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_4_Eksperymentalne.mp4'
-        // Dodaj resztę filmów zależnie od grupy (kontrolnej/eksperymentalnej)
     ];
 
     let currentVideoIndex = 0;
@@ -13,7 +12,7 @@ window.onload = function() {
     document.getElementById('startButton').addEventListener('click', function() {
         document.getElementById('instruction-container').style.display = 'none';
         document.getElementById('video-container').style.display = 'block';
-        showTaskLabel('Zadanie próbne', 5000); // Wyświetl etykietę zadania próbnego przez 5 sekund
+        showTaskLabel('Zadanie próbne', 5000);
     });
 
     function showTaskLabel(label, duration) {
@@ -58,23 +57,24 @@ window.onload = function() {
             <button id="submitButton">Zatwierdź odpowiedź</button>
         `;
         responseForm.style.display = 'block';
-    
-        // Dodaj nasłuchiwacz zdarzeń do nowo utworzonego przycisku
-document.getElementById('submitButton').addEventListener('click', submitResponse);    }
-
-
-    document.getElementById('submitButton').addEventListener('click', submitResponse);
+        
+        // Dodajemy nasłuchiwacz zdarzeń do przycisku po stworzeniu formularza odpowiedzi
+        document.getElementById('submitButton').addEventListener('click', submitResponse);
+    }
 
     function submitResponse() {
         const responseForm = document.getElementById('response-form');
-        responseForm.style.display = 'none';  // Ukryj formularz po zatwierdzeniu odpowiedzi
+        responseForm.style.display = 'none'; // Ukryj formularz po zatwierdzeniu odpowiedzi
     
+        if (currentVideoIndex === 0) {
+            alert("Poprawną odpowiedzią było 'Figura jest trójkątem'. Teraz już nie będzie podawana prawidłowa odpowiedź i będziesz musiał/a klikać samodzielnie.");
+        }
+
         if (currentVideoIndex < videos.length - 1) {
             currentVideoIndex++;
-            showTaskLabel(`Zadanie ${currentVideoIndex}`, 5000);
+            showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000); // poprawa wyświetlanego indeksu zadania
         } else {
-            window.location.href = 'https://tally.so/r/3jBazR';  // Przekierowanie na zakończenie
+            window.location.href = 'https://tally.so/r/3jBazR'; // Przekierowanie na zakończenie
         }
     }
-    
 };
