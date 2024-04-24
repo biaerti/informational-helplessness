@@ -73,7 +73,7 @@ document.getElementById('submitButton').addEventListener('click', submitResponse
             currentVideoIndex++;
             showTaskLabel(`Zadanie ${currentVideoIndex}`, 5000);
         } else {
-            window.location.href = 'https://tally.so/r/3jBazR';  // Przekierowanie na zakończenie
+            window.location.href = 'https://tally.so/r/wvNGb8';  // Przekierowanie na zakończenie
         }
     }
     
