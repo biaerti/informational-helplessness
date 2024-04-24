@@ -25,9 +25,7 @@ window.onload = function() {
 
     function showTaskLabel(label, duration) {
         if (videoContainer) {
-            // Poprawa numeracji zadania dla wyświetlenia użytkownikowi
-            let displayIndex = currentVideoIndex === 0 ? 'próbne' : currentVideoIndex;
-            videoContainer.innerHTML = `<h2>Zadanie ${displayIndex}</h2>`;
+            videoContainer.innerHTML = `<h2>${label}</h2>`;
             setTimeout(function() {
                 loadVideo(currentVideoIndex);
             }, duration);
@@ -81,19 +79,17 @@ window.onload = function() {
     function submitResponse() {
         const responseForm = document.getElementById('response-form');
         if (responseForm) {
-            responseForm.style.display = 'none';  // Ukryj formularz po zatwierdzeniu odpowiedzi
-    
-            // Informacja po zadaniu próbnym
+            responseForm.style.display = 'none';
             if (currentVideoIndex === 0) {
-                alert("Poprawną odpowiedzią było 'Figura jest trójkątem'. Jeśli zaznaczyłeś/aś poprawnie - gratulacje! Teraz czekają Cię 4 właściwe zadania. Każde zadanie zawiera po 12 figur i trwa po 1 minucie. Powodzenia!");
+                alert("Poprawną odpowiedzią było 'Figura jest trójkątem'. Jeśli zaznaczyłeś/aś poprawnie - gratulacje! Teraz czekają Cię 4 właściwe zadania. Każde zadanie zawiera po 12 figur i trwa po 1 minucie. Powodzenia!.");
             }
-    
-            // Przejście do kolejnego zadania lub zakończenie
+
             if (currentVideoIndex < videos.length - 1) {
                 currentVideoIndex++;
-                showTaskLabel(`Zadanie ${currentVideoIndex}`, 5000);  // Wyświetlanie zadania z aktualnym numerem
+                showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000);
             } else {
-                window.location.href = 'https://tally.so/r/3jBazR';  // Przekierowanie na zakończenie
+                window.location.href = 'https://tally.so/r/3jBazR';
             }
         }
     }
+};
