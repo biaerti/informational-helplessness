@@ -1,9 +1,9 @@
 window.onload = function() {
     const videos = [
-        'https://www.industryplant.xyz/videos/Zadanie_Proba.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_próbne.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_1_Eksperymentalne.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_2_Eksperymentalnee.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_3_Eskperymentalnee.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_3_Eksperymentalnee.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_4_Eksperymentalne.mp4'
         // Dodaj resztę filmów zależnie od grupy (kontrolnej/eksperymentalnej)
     ];
@@ -17,8 +17,10 @@ window.onload = function() {
     });
 
     function showTaskLabel(label, duration) {
-        const taskContainer = document.getElementById('task-container');
-        taskContainer.innerHTML = `<h2>${label}</h2><p>Obserwuj zmieniające się figury i wyszukuj wspólnej cechy.</p>`;
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.innerHTML = `<h2>${label}</h2>`;
+        videoContainer.style.display = 'block';
+    
         setTimeout(function() {
             loadVideo(currentVideoIndex);
         }, duration);
@@ -30,12 +32,13 @@ window.onload = function() {
             <source src="${videos[index]}" type="video/mp4">
             Twoja przeglądarka nie wspiera tagu video.
         </video>`;
+
         const video = document.getElementById('current-video');
         video.onended = function() {
             displayResponseForm();
         };
     }
-
+    
     function displayResponseForm() {
         const responseForm = document.getElementById('response-form');
         responseForm.innerHTML = `
@@ -55,8 +58,12 @@ window.onload = function() {
             <button id="submitButton">Zatwierdź odpowiedź</button>
         `;
         responseForm.style.display = 'block';
-        document.getElementById('submitButton').addEventListener('click', submitResponse);
-    }
+    
+        // Dodaj nasłuchiwacz zdarzeń do nowo utworzonego przycisku
+document.getElementById('submitButton').addEventListener('click', submitResponse);    }
+
+
+    document.getElementById('submitButton').addEventListener('click', submitResponse);
 
     function submitResponse() {
         const responseForm = document.getElementById('response-form');
@@ -64,9 +71,10 @@ window.onload = function() {
     
         if (currentVideoIndex < videos.length - 1) {
             currentVideoIndex++;
-            showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000); // poprawa wyświetlanego indeksu zadania
+            showTaskLabel(`Zadanie ${currentVideoIndex}`, 5000);
         } else {
-            window.location.href = 'https://tally.so/r/wvNGb8';  // Przekierowanie na zakończenie
+            window.location.href = 'https://tally.so/r/3jBazR';  // Przekierowanie na zakończenie
         }
     }
+    
 };
