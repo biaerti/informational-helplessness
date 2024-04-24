@@ -17,10 +17,8 @@ window.onload = function() {
     });
 
     function showTaskLabel(label, duration) {
-        const videoContainer = document.getElementById('video-container');
-        videoContainer.innerHTML = `<h2>${label}</h2>`;
-        videoContainer.style.display = 'block';
-    
+        const taskContainer = document.getElementById('task-container');
+        taskContainer.innerHTML = `<h2>${label}</h2><p>Obserwuj zmieniające się figury i wyszukuj wspólnej cechy.</p>`;
         setTimeout(function() {
             loadVideo(currentVideoIndex);
         }, duration);
@@ -28,18 +26,16 @@ window.onload = function() {
 
     function loadVideo(index) {
         const videoContainer = document.getElementById('video-container');
-        const taskMessage = "Obserwuj zmieniające się figury i wyszukuj wspólnej cechy.";
         videoContainer.innerHTML = `<video id="current-video" width="640" height="360" autoplay muted oncontextmenu="return false;" style="pointer-events: none;">
             <source src="${videos[index]}" type="video/mp4">
             Twoja przeglądarka nie wspiera tagu video.
-        </video><p>${taskMessage}</p>`;
-
+        </video>`;
         const video = document.getElementById('current-video');
         video.onended = function() {
             displayResponseForm();
         };
     }
-    
+
     function displayResponseForm() {
         const responseForm = document.getElementById('response-form');
         responseForm.innerHTML = `
