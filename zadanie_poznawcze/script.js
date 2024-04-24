@@ -2,8 +2,8 @@ window.onload = function() {
     const videos = [
         'https://www.industryplant.xyz/videos/Zadanie_Proba.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_1_Eksperymentalne.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_2_Eksperymentalne.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_3_Eksperymentalne.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_2_Eksperymentalnee.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_3_Eksperymentalnee.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_4_Eksperymentalne.mp4'
     ];
 
