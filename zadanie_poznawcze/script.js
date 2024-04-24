@@ -28,10 +28,11 @@ window.onload = function() {
 
     function loadVideo(index) {
         const videoContainer = document.getElementById('video-container');
+        const taskMessage = "Obserwuj zmieniające się figury i wyszukuj wspólnej cechy.";
         videoContainer.innerHTML = `<video id="current-video" width="640" height="360" autoplay muted oncontextmenu="return false;" style="pointer-events: none;">
             <source src="${videos[index]}" type="video/mp4">
             Twoja przeglądarka nie wspiera tagu video.
-        </video>`;
+        </video><p>${taskMessage}</p>`;
 
         const video = document.getElementById('current-video');
         video.onended = function() {
@@ -58,12 +59,8 @@ window.onload = function() {
             <button id="submitButton">Zatwierdź odpowiedź</button>
         `;
         responseForm.style.display = 'block';
-    
-        // Dodaj nasłuchiwacz zdarzeń do nowo utworzonego przycisku
-document.getElementById('submitButton').addEventListener('click', submitResponse);    }
-
-
-    document.getElementById('submitButton').addEventListener('click', submitResponse);
+        document.getElementById('submitButton').addEventListener('click', submitResponse);
+    }
 
     function submitResponse() {
         const responseForm = document.getElementById('response-form');
@@ -71,10 +68,9 @@ document.getElementById('submitButton').addEventListener('click', submitResponse
     
         if (currentVideoIndex < videos.length - 1) {
             currentVideoIndex++;
-            showTaskLabel(`Zadanie ${currentVideoIndex}`, 5000);
+            showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000); // poprawa wyświetlanego indeksu zadania
         } else {
             window.location.href = 'https://tally.so/r/wvNGb8';  // Przekierowanie na zakończenie
         }
     }
-    
 };
