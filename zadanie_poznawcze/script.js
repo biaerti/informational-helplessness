@@ -81,7 +81,7 @@ window.onload = function() {
         if (responseForm) {
             responseForm.style.display = 'none';
             if (currentVideoIndex === 0) {
-                alert("Poprawną odpowiedzią było 'Figura jest trójkątem'. Jeśli zaznaczyłeś/aś poprawnie - gratulacje! Teraz czekają Cię 4 właściwe zadania. Każde zadanie zawiera po 12 figur i trwa po 1 minucie. Powodzenia!.");
+                alert("Poprawną odpowiedzią było 'Figura jest trójkątem'. Jeśli zaznaczyłeś/aś poprawnie - gratulacje! Teraz czekają Cię 4 właściwe zadania. Każde zadanie zawiera po 12 figur i trwa po 1 minucie. Po odpowiedzi NIE będzie już feedbacku, która odpowiedź była poprawna. Powodzenia!.");
             }
 
             if (currentVideoIndex < videos.length - 1) {
