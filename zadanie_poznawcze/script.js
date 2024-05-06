@@ -3,7 +3,7 @@ window.onload = function() {
         'https://www.industryplant.xyz/videos/Zadanie_PR.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_EKS1.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_EKS2.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_EKS3.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_EKS3.mp4'
     ];
 
     let currentVideoIndex = 0;
@@ -16,7 +16,8 @@ window.onload = function() {
         startButton.addEventListener('click', function() {
             instructionContainer.style.display = 'none';
             videoContainer.style.display = 'block';
-            showTaskLabel('Zadanie 1', 5000); // Zmiana numeracji na "Zadanie 1" dla pierwszego zadania
+            showTaskLabel('Zadanie 1', 5000);
+            // Opóźnienie jest ustawione na 5000, ale to można dostosować
         });
     } else {
         console.error('Some elements do not exist in the DOM');
@@ -37,15 +38,24 @@ window.onload = function() {
                 <source src="${videos[index]}" type="video/mp4">
                 Twoja przeglądarka nie wspiera tagu video.
             </video>`;
-
+    
             const video = document.getElementById('current-video');
-            if (video) {
+            if (video instanceof HTMLVideoElement) {  // Upewnij się, że video jest instancją HTMLVideoElement
+                video.load(); // Teraz metoda load jest dostępna
+                video.play().catch(error => {  // Metoda play jest teraz dostępna i możesz obsłużyć błędy
+                    console.error("Nie można autoodtwarzać wideo: ", error);
+                    // Opcjonalnie, zapytaj użytkownika o ręczne uruchomienie wideo
+                });
+    
                 video.onended = function() {
                     displayResponseForm();
                 };
+            } else {
+                console.error("Nie udało się uzyskać dostępu do elementu wideo.");
             }
         }
     }
+    
     
     function displayResponseForm() {
         const responseForm = document.getElementById('response-form');
