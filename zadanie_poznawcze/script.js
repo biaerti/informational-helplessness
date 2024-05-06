@@ -1,6 +1,6 @@
 window.onload = function() {
     const videos = [
-        'https://www.industryplant.xyz/videos/Zadanie_Proba.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_PR.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_1_Eks.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_2_Eks.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_3_Eks.mp4',
