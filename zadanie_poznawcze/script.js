@@ -4,7 +4,6 @@ window.onload = function() {
         'https://www.industryplant.xyz/videos/Zadanie_1_Eks.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_2_Eks.mp4',
         'https://www.industryplant.xyz/videos/Zadanie_3_Eks.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_4_Eks.mp4'
     ];
 
     let currentVideoIndex = 0;
