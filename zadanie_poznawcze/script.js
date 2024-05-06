@@ -88,7 +88,7 @@ window.onload = function() {
                 currentVideoIndex++;
                 showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000); // Zmiana numeracji dla kolejnych zadań
             } else {
-                window.location.href = 'https://tally.so/r/3jBazR';
+                window.location.href = 'https://tally.so/r/wvNGb8';
             }
         }
     }
