@@ -1,9 +1,9 @@
 window.onload = function() {
     const videos = [
         'https://www.industryplant.xyz/videos/Zadanie_PR.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_1_Eks.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_2_Eks.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_3_Eks.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_EKS1.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_EKS2.mp4',
+        'https://www.industryplant.xyz/videos/Zadanie_EKS3.mp4',
     ];
 
     let currentVideoIndex = 0;
