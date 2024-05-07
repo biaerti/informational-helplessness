@@ -9,28 +9,20 @@ body {
     background-color: #f0f0f0;
 }
 
-#video-container, #response-form {
-    margin: 20px;
+#instruction-container, #response-form, #image-container {
+    width: 90%; /* Ogranicza szerokość kontenerów do 90% szerokości ekranu */
+    max-width: 600px; /* Maksymalna szerokość kontenera */
+    margin: 20px auto; /* Centralizuje kontenery i dodaje marginesy */
     padding: 20px;
     background: white;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center; /* Wyśrodkowuje tekst w kontenerach */
 }
 
-#playButton {
-    padding: 20px 40px;
-    font-size: 32px;
-    cursor: pointer;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-#task-message {
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #f4f4f4; /* jasnoszary tło dla lepszej widoczności */
-    border: 1px solid #ccc; /* subtelna obramówka */
-    text-align: center;
+#current-image {
+    max-width: 100%; /* Ustawia maksymalną szerokość na 100% kontenera */
+    max-height: 500px; /* Ogranicza wysokość do 500px */
+    display: block; /* Zapewnia, że obrazek nie będzie miał dodatkowego miejsca pod nim */
+    margin: 0 auto; /* Centruje obrazek w poziomie */
 }
