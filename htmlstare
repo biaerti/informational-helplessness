@@ -9,40 +9,37 @@
 <body>
     <div id="instruction-container">
         <h1>Instrukcja do Zadania</h1>
-        <p>W trakcie badania na ekranie będą pojawiać się kolejno różne figury. 
-        <p>Pod każdą z nich znajdziesz podpowiedź w postaci słowa "tak" lub "nie".</p> 
+        <p>W trakcie badania na ekranie będą pojawiać się kolejno różne obrazki.</p>
+        <p>Pod każdym z nich znajdziesz podpowiedź w postaci słowa "tak" lub "nie".</p> 
         <p>Te podpowiedzi informują, czy dana figura posiada określoną cechę do odgadnięcia w danym zadaniu.</p>
-        <h2>Co musisz zrobić:</h2>
-        <ol>
-            <li><strong>Obserwacja:</strong> Uważnie obserwuj figury i zwracaj uwagę na podpowiedzi. Każde zadanie dotyczy innej cechy.</li>
-            <li><strong>Odgadywanie cechy:</strong> Twoim zadaniem jest zidentyfikować, która cecha z listy dotyczy figur w danym zadaniu.</li>
-            <li><strong>Wybór odpowiedzi:</strong> Po zakończeniu zadania wybierz odpowiedź z rozwijanego menu, które zawiera listę możliwych cech. Możliwa jest tylko jedna odpowiedź dla każdego zadania.</li>
-        </ol>
-        <h2>Lista możliwych cech do wyboru:</h2>
-        <ul>
-            <li>Figura ma literę "R"</li>
-            <li>Figura ma literę "r"</li>
-            <li>Figura jest duża</li>
-            <li>Figura jest mała</li>
-            <li>Figura jest kwadratem</li>
-            <li>Figura jest trójkątem</li>
-            <li>Figura ma kreskę u góry</li>
-            <li>Figura ma kreskę u dołu</li>
-            <li>Figura jest gładka</li>
-            <li>Figura jest kreskowana</li>
-        </ul>
         <h2>Przebieg zadania:</h2>
         <ol>
             <li>Rozpoczniesz od jednego zadania próbnego, aby zapoznać się z mechaniką badania. Jeśli nie wszystko jest jasne, nie martw się, ono wszystko rozjaśni!</li>
             <li>Następnie przejdziesz do trzech właściwych zadań, każde z inną cechą do odgadnięcia.</li>
             <li>Po każdym zadaniu, przed przejściem do kolejnego, zatwierdź swoją odpowiedź i poczekaj na załadowanie się kolejnej serii figur.</li>
         </ol>
+        <p>Jeśli zobaczysz czarne tło po kliknięciu START, oddal ekran, ponieważ figury domyśłnie mogą być w dużym zoomie!</p>
         <button id="startButton">START</button>
     </div>
-    <div id="task-message">Obserwuj zmieniające się figury i wyszukuj jednej wspólnej cechy wśród figur z oznaczeniem "tak".</div>
-    <div id="video-container" style="display: none;">
+    <div id="image-container" style="display: none;">
+        <img id="current-image" src="" alt="Obrazek figury">
     </div>
-    <div id="response-form" style="display: none;"></div>
+    <div id="response-form" style="display: none;">
+        <h2>Wybierz cechę figury z obrazków:</h2>
+        <select id="response-select">
+            <option value="capital">Figura ma literę "R"</option>
+            <option value="small">Figura ma literę "r"</option>
+            <option value="large">Figura jest duża</option>
+            <option value="small_size">Figura jest mała</option>
+            <option value="square">Figura jest kwadratem</option>
+            <option value="triangle">Figura jest trójkątem</option>
+            <option value="upper">Figura ma kreskę u góry</option>
+            <option value="lower">Figura ma kreskę u dołu</option>
+            <option value="plain">Figura jest gładka</option>
+            <option value="patterned">Figura jest kreskowana</option>
+        </select>
+        <button id="submitButton">Zatwierdź odpowiedź</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

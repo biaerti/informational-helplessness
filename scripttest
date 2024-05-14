@@ -1,104 +1,96 @@
 window.onload = function() {
-    const videos = [
-        'https://www.industryplant.xyz/videos/Zadanie_PR.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_EKS1.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_EKS2.mp4',
-        'https://www.industryplant.xyz/videos/Zadanie_EKS3.mp4'
-    ];
+    const tasks = [
+        [
+            'https://www.industryplant.xyz/images/1.1_2.93.1.jpg',
+            'https://www.industryplant.xyz/images/1.1_2.95.1.jpg',
+            'https://www.industryplant.xyz/images/1.1_2.97.1.jpg',
+            'https://www.industryplant.xyz/images/1.1_2.99.1.jpg'
+        ],
+        ['https://www.industryplant.xyz/images/2_2.100.1.jpg', 
+        'https://www.industryplant.xyz/images/2_2.102.1.jpg', 
+        'https://www.industryplant.xyz/images/2_2.104.1.jpg', 
+        'https://www.industryplant.xyz/images/2_2.106.1.jpg',
+        'https://www.industryplant.xyz/images/2_2.108.1.jpg',
+        'https://www.industryplant.xyz/images/2_2.110.1.jpg',
+        'https://www.industryplant.xyz/images/2_2.112.1.jpg',
+        'https://www.industryplant.xyz/images/2_2.114.1.jpg',
+        'https://www.industryplant.xyz/images/2_2.116.1.jpg',
+        'https://www.industryplant.xyz/images/2_2.118.1.jpg',
+        'https://www.industryplant.xyz/images/2_2.120.1.jpg',
+        'https://www.industryplant.xyz/images/2_2.122.1.jpg'],
+    ['https://www.industryplant.xyz/images/4_2.146.1.jpg', 
+    'https://www.industryplant.xyz/images/3_2.125.1.jpg', 
+    'https://www.industryplant.xyz/images/3_2.127.1.jpg', 
+    'https://www.industryplant.xyz/images/3_2.129.1.jpg',
+    'https://www.industryplant.xyz/images/3_2.131.1.jpg',
+    'https://www.industryplant.xyz/images/3_2.133.1.jpg',
+    'https://www.industryplant.xyz/images/3_2.135.1.jpg',
+    'https://www.industryplant.xyz/images/3_2.137.1.jpg',
+    'https://www.industryplant.xyz/images/3_2.139.1.jpg',
+    'https://www.industryplant.xyz/images/3_2.141.1.jpg',
+    'https://www.industryplant.xyz/images/3_2.143.1.jpg',
+    'https://www.industryplant.xyz/images/3_2.145.1.jpg'],
+    ['https://www.industryplant.xyz/images/4_2.146.1.jpg', 
+    'https://www.industryplant.xyz/images/4_2.148.1.jpg', 
+    'https://www.industryplant.xyz/images/4_2.150.1.jpg',
+    'https://www.industryplant.xyz/images/4_2.152.1.jpg',
+    'https://www.industryplant.xyz/images/4_2.154.1.jpg',
+    'https://www.industryplant.xyz/images/4_2.156.1.jpg',
+    'https://www.industryplant.xyz/images/4_2.158.1.jpg',
+    'https://www.industryplant.xyz/images/4_2.160.1.jpg',
+    'https://www.industryplant.xyz/images/4_2.162.1.jpg',
+    'https://www.industryplant.xyz/images/4_2.164.1.jpg',
+    'https://www.industryplant.xyz/images/4_2.166.1.jpg']]
 
-    let currentVideoIndex = 0;
+    let currentTaskIndex = 0;
+    let currentImageIndex = 0;
+    const displayTime = 5000;
+    const intervalTime = 500;
 
     const startButton = document.getElementById('startButton');
     const instructionContainer = document.getElementById('instruction-container');
-    const videoContainer = document.getElementById('video-container');
+    const imageContainer = document.getElementById('image-container');
+    const currentImage = document.getElementById('current-image');
+    const responseForm = document.getElementById('response-form');
 
-    if (startButton && instructionContainer && videoContainer) {
-        startButton.addEventListener('click', function() {
-            instructionContainer.style.display = 'none';
-            videoContainer.style.display = 'block';
-            showTaskLabel('Zadanie 1', 5000);
-            // Opóźnienie jest ustawione na 5000, ale to można dostosować
-        });
-    } else {
-        console.error('Some elements do not exist in the DOM');
-    }
+    startButton.addEventListener('click', function() {
+        instructionContainer.style.display = 'none';
+        imageContainer.style.display = 'block';
+        showImage();
+    });
 
-    function showTaskLabel(label, duration) {
-        if (videoContainer) {
-            videoContainer.innerHTML = `<h2>${label}</h2>`;
-            setTimeout(function() {
-                loadVideo(currentVideoIndex);
-            }, duration);
-        }
-    }
-
-    function loadVideo(index) {
-        if (videoContainer) {
-            videoContainer.innerHTML = `<video id="current-video" width="640" height="360" autoplay muted oncontextmenu="return false;" style="pointer-events: none;">
-                <source src="${videos[index]}" type="video/mp4">
-                Twoja przeglądarka nie wspiera tagu video.
-            </video>`;
-    
-            const video = document.getElementById('current-video');
-            if (video instanceof HTMLVideoElement) {  // Upewnij się, że video jest instancją HTMLVideoElement
-                video.load(); // Teraz metoda load jest dostępna
-                video.play().catch(error => {  // Metoda play jest teraz dostępna i możesz obsłużyć błędy
-                    console.error("Nie można autoodtwarzać wideo: ", error);
-                    // Opcjonalnie, zapytaj użytkownika o ręczne uruchomienie wideo
-                });
-    
-                video.onended = function() {
+    function showImage() {
+        if (currentImageIndex < tasks[currentTaskIndex].length) {
+            currentImage.src = tasks[currentTaskIndex][currentImageIndex];
+            currentImage.style.display = 'block';
+            currentImageIndex++;
+            setTimeout(() => {
+                if (currentImageIndex < tasks[currentTaskIndex].length) {
+                    setTimeout(showImage, intervalTime);
+                } else {
+                    currentImageIndex = 0;
                     displayResponseForm();
-                };
-            } else {
-                console.error("Nie udało się uzyskać dostępu do elementu wideo.");
-            }
+                }
+            }, displayTime);
         }
     }
-    
-    
+
     function displayResponseForm() {
-        const responseForm = document.getElementById('response-form');
-        if (responseForm) {
-            responseForm.innerHTML = `
-                <h2>Wybierz cechę figury z filmiku:</h2>
-                <select id="response-select">
-                    <option value="capital">Figura ma literę "R"</option>
-                    <option value="small">Figura ma literę "r"</option>
-                    <option value="large">Figura jest duża</option>
-                    <option value="small_size">Figura jest mała</option>
-                    <option value="square">Figura jest kwadratem</option>
-                    <option value="triangle">Figura jest trójkątem</option>
-                    <option value="upper">Figura ma kreskę u góry</option>
-                    <option value="lower">Figura ma kreskę u dołu</option>
-                    <option value="plain">Figura jest gładka</option>
-                    <option value="patterned">Figura jest kreskowana</option>
-                </select>
-                <button id="submitButton">Zatwierdź odpowiedź</button>
-            `;
-            responseForm.style.display = 'block';
-            
-            const submitButton = document.getElementById('submitButton');
-            if (submitButton) {
-                submitButton.addEventListener('click', submitResponse);
-            }
-        }
+        imageContainer.style.display = 'none';
+        responseForm.style.display = 'block';
     }
 
-    function submitResponse() {
-        const responseForm = document.getElementById('response-form');
-        if (responseForm) {
-            responseForm.style.display = 'none';
-            if (currentVideoIndex === 0) {
-                alert("Poprawną odpowiedzią było 'Figura jest trójkątem'. Jeśli zaznaczyłeś/aś poprawnie - gratulacje! Teraz czekają Cię 3 właściwe zadania. Każde zadanie zawiera po 12 figur i trwa po 1 minucie. Po zaznaczeniu odpowiedzi, nie będzie już jednak informacji, która odpowiedź była poprawna. Powodzenia!");
-            }
-
-            if (currentVideoIndex < videos.length - 1) {
-                currentVideoIndex++;
-                showTaskLabel(`Zadanie ${currentVideoIndex + 1}`, 5000); // Zmiana numeracji dla kolejnych zadań
-            } else {
-                window.location.href = 'https://tally.so/r/wvNGb8';
-            }
+    document.getElementById('submitButton').addEventListener('click', function() {
+        responseForm.style.display = 'none';
+        if (currentTaskIndex === 0) {
+            alert("Poprawną odpowiedzią było 'Figura jest trójkątem'. Jeśli zaznaczyłeś/aś poprawnie - gratulacje! Teraz czekają Cię 3 właściwe zadania. Każde zadanie zawiera po 12 figur i trwa po 1 minucie. Po zaznaczeniu odpowiedzi, nie będzie już jednak informacji, która odpowiedź była poprawna. Powodzenia!");
         }
-    }
+        currentTaskIndex++;
+        if (currentTaskIndex < tasks.length) {
+            imageContainer.style.display = 'block';
+            showImage();
+        } else {
+            window.location.href = 'https://tally.so/r/wvNGb8'; // Przekierowanie na formularz po ostatnim zadaniu
+        }
+    });
 };

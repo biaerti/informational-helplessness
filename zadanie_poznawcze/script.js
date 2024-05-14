@@ -60,6 +60,7 @@ window.onload = function() {
     });
 
     function showImage() {
+        document.getElementById('static-message').style.display = 'block'; // Pokaż komunikat
         if (currentImageIndex < tasks[currentTaskIndex].length) {
             currentImage.src = tasks[currentTaskIndex][currentImageIndex];
             currentImage.style.display = 'block';
@@ -73,6 +74,12 @@ window.onload = function() {
                 }
             }, displayTime);
         }
+    }
+    
+    function displayResponseForm() {
+        document.getElementById('static-message').style.display = 'none'; // Ukryj komunikat
+        imageContainer.style.display = 'none';
+        responseForm.style.display = 'block';
     }
 
     function displayResponseForm() {
