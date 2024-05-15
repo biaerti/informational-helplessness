@@ -97,7 +97,7 @@ window.onload = function() {
             imageContainer.style.display = 'block';
             showImage();
         } else {
-            window.location.href = 'https://tally.so/r/wLdZy2'; // Przekierowanie na formularz po ostatnim zadaniu
+            window.location.href = 'https://tally.so/r/npLb9E'; // Przekierowanie na formularz po ostatnim zadaniu
         }
     });
 };
