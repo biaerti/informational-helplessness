@@ -98,7 +98,7 @@ window.onload = function() {
             showImage();
         } else {
             alert("Twój wynik to 0/3 punkty. Kliknij OK, aby przejść do drugiej części formularza.");
-            window.location.href = 'https://tally.so/r/npLb9E'; // Przekierowanie na formularz po ostatnim zadaniu
+            window.location.href = 'https://tally.so/r/31rA5L'; // Przekierowanie na formularz po ostatnim zadaniu
         }
     });
 };
